@@ -1,0 +1,1493 @@
+openapi: 3.0.3
+info:
+  title: Swagger IU5 Networking Template - OpenAPI 3.0
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+tags:
+  - name: task
+    description: Everything about your Tasks
+  - name: users
+    description: Everything about your Users
+  - name: statuses
+    description: Everything about your Task Statuses
+  - name: user_task
+    description: Everything about users in tasks
+  - name: status_task
+    description: Everything about tasks in status
+paths:
+  /status_task:
+    get:
+      tags:
+        - status_task
+      description: Returns tasks in status
+      operationId: getStatusTask
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatusTask'
+  /status_task/add:
+    post:
+      tags:
+        - status_task
+      description: Add a new task in status
+      operationId: addStatusTask
+      requestBody:
+        description: Create a new task in status
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStatusTask'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusTask'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '405':
+          description: Invalid input
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /delstatus_task/{ID}:
+    delete:
+      tags:
+        - status_task
+      operationId: deleteStatusTask
+      parameters:
+        - name: ID
+          in: path
+          description: status task id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Method Api Users  Delete
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'  
+  /upstatus_task/{ID}:
+    put:
+      tags:
+        - status_task
+      operationId: updateStatusTask
+      parameters:
+        - name: ID
+          in: path
+          description: ID of status task to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update existing status_task
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStatusTask'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusTask'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '404':
+          description: Task not found
+        '405':
+          description: Invalid input
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /user_task:
+    get:
+      tags:
+        - user_task
+      description: Returns users in tasks
+      operationId: getUserTask
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserTask'
+  /user_task/add:
+    post:
+      tags:
+        - user_task
+      description: Add a new user in task
+      operationId: addUserTask
+      requestBody:
+        description: Create a new user in task
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserTask'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTask'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '405':
+          description: Invalid input
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /deluser_task/{ID}:
+    delete:
+      tags:
+        - user_task
+      operationId: deleteUserTask
+      parameters:
+        - name: ID
+          in: path
+          description: user task id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Method Api Users  Delete
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'    
+  /upuser_task/{ID}:
+    put:
+      tags:
+        - user_task
+      operationId: updateUserTask
+      parameters:
+        - name: ID
+          in: path
+          description: ID of user task to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update existing status_task
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserTask'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTask'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '404':
+          description: Task not found
+        '405':
+          description: Invalid input
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /tasks:
+    get:
+      tags:
+        - task
+      description: Returns tasks
+      operationId: getTasks
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tasks'
+
+  /tasks/add:
+    post:
+      tags:
+        - task
+      description: Add a new task
+      operationId: addTasks
+      requestBody:
+        description: Create a new task
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTask'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '405':
+          description: Invalid input
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /tasks/{ID}:
+    get:
+      tags:
+        - task
+      description: Returns a single task
+      operationId: getTaskById
+      parameters:
+        - name: ID
+          in: path
+          description: ID of task to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+  /uptasks/{ID}:
+    put:
+      tags:
+        - task
+      operationId: updateTasks
+      parameters:
+        - name: ID
+          in: path
+          description: ID of task to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update existing tasks
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTask'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '404':
+          description: Task not found
+        '405':
+          description: Invalid input
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /deltasks/{ID}:
+    delete:
+      tags:
+        - task
+      operationId: deleteTask
+      parameters:
+        - name: ID
+          in: path
+          description: task id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Method Api Users  Delete
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /statuses:
+    get:
+      tags:
+        - statuses
+      description: get statuses
+      operationId: getStatusesFromTask
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Statuses'
+  /statuses/add:
+    post:
+      tags:
+        - statuses
+      description: create statuses for task
+      operationId: addStatusInTask
+      requestBody:
+        description: Create new task
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStatuses'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '405':
+          description: Invalid input
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /upstatuses/{ID}:
+    put:
+      tags:
+        - statuses
+      operationId: updateStatus
+      parameters:
+        - name: ID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update existing status for task
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStatuses'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statuses'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '404':
+          description: Task not found
+        '405':
+          description: Invalid input
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /delstatuses/{ID}:
+    delete:
+      tags:
+        - statuses
+      operationId: deleteStatus
+      parameters:
+        - name: ID
+          in: path
+          description: board id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Method Api Users  Delete
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/users:
+    get:
+      tags:
+        - users
+      description: Returns users
+      operationId: getUsers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /api/users/add:
+    post:
+      tags:
+        - users
+      operationId: method_api_users__put
+      parameters:
+        - required: true
+          schema:
+            title: Id
+            type: string
+            format: uuid
+          name: id
+          in: query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Method Api Users  Put
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorSchema'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorSchema'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - OAuth2PasswordBearer: []
+  /api/users/{ID}:
+    get:
+      tags:
+        - users
+      description: ''
+      operationId: getUserById
+      parameters:
+        - name: ID
+          in: path
+          description: User can look at his profile
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid userId supplied
+        '404':
+          description: User not found
+          
+          
+          
+components:
+  schemas:
+    CreateStatusTask:
+      required:
+        - statusid
+        - taskid
+      type: object
+      properties:
+        statusid:
+          $ref: '#/components/schemas/Statuses'
+        taskid:
+          $ref: '#/components/schemas/Tasks'
+    StatusTask:
+      required:
+        - id
+        - statusid
+        - taskid
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        statusid:
+          $ref: '#/components/schemas/Statuses'
+        taskid:
+          $ref: '#/components/schemas/Tasks'
+    CreateUserTask:
+      required:
+        - userid
+        - taskid
+      type: object
+      properties:
+        userid:
+          $ref: '#/components/schemas/User'
+        taskid:
+          $ref: '#/components/schemas/Tasks'
+    UserTask:
+      required:
+        - id
+        - usersid
+        - taskid
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userid:
+          $ref: '#/components/schemas/User'
+        taskid:
+          $ref: '#/components/schemas/Tasks'
+    CreateTask:
+      required:
+        - id
+        - name
+        - description
+        - date_start
+        - date_end
+        - userId
+        - priority
+        - readiness
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example:
+        description:
+          type: string
+          example:
+        date_start:
+          type: string
+          example: "2017-01-01"
+          format: date
+          pattern: "YYYY-MM-DD"
+          minLength: 0
+          maxLength: 10
+        date_end:
+          type: string
+          example: "2017-01-01"
+          format: date
+          pattern: "YYYY-MM-DD"
+          minLength: 0
+          maxLength: 10
+        userId:
+          $ref: '#/components/schemas/User'
+        priority:
+          enum:
+          - 'низкий'
+          - 'средний'
+          - 'высокий'
+        readiness:
+          enum:
+          - '0%'
+          - '25%'
+          - '50%'
+          - '75%'
+          - '100%'
+          
+    Tasks:
+      required:
+        - id
+        - name
+        - description
+        - date_start
+        - date_end
+        - userId
+        - priority
+        - readiness
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example:
+        description:
+          type: string
+          example:
+        date_start:
+          type: string
+          example: "2017-01-01"
+          format: date
+          pattern: "YYYY-MM-DD"
+          minLength: 0
+          maxLength: 10
+        date_end:
+          type: string
+          example: "2017-01-01"
+          format: date
+          pattern: "YYYY-MM-DD"
+          minLength: 0
+          maxLength: 10
+        userId:
+          $ref: '#/components/schemas/User'
+        priority:
+          enum:
+          - 'низкий'
+          - 'средний'
+          - 'высокий'
+        readiness:
+          enum:
+          - '0%'
+          - '25%'
+          - '50%'
+          - '75%'
+          - '100%'
+    CreateStatuses:
+      required:
+        - name
+        - description
+      type: object
+      properties:
+        name:
+          type: string
+        decription:
+          type: string
+    Statuses:
+      required:
+        - id
+        - name
+        - description
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        decription:
+          type: string
+
+
+    BadRequestErrorSchema:
+      title: BadRequestErrorSchema
+      required:
+        - detail
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: string
+
+
+    ConflictErrorSchema:
+      title: ConflictErrorSchema
+      required:
+        - detail
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: string
+    ConnectorExpand:
+      title: ConnectorExpand
+      type: object
+      properties:
+        name:
+          title: Наименование
+          type: string
+          default: ''
+        any_data_dict:
+          title: Словарь для хранения произвольных дополнительных данных
+          type: object
+          default: {}
+        description:
+          title: Описание
+          type: string
+          default: ''
+        id:
+          title: Идентификатор
+          type: string
+          format: uuid
+        created_time:
+          title: Время создания
+          type: string
+          format: date-time
+        modified_time:
+          title: Время модификации
+          type: string
+          format: date-time
+        page_size:
+          title: Количество данных, передаваемых за раз
+          type: integer
+        offset:
+          title: Количество данных, пропускаемых от начала
+          type: integer
+          default: 0
+        interval_ms:
+          title: Интервал между запросами данных(в миллисекундах)
+          type: number
+        is_active:
+          title: Активен
+          type: boolean
+          default: true
+        is_paused:
+          title: На паузе
+          type: boolean
+          default: false
+        is_step_mode:
+          title: Пошаговый режим
+          type: boolean
+          description: Переходить в режим паузы после каждого блока данных
+          default: false
+        keep_alive:
+          title: Не останавливать, когда нет данных
+          type: boolean
+          description: >-
+            Ожидать ли что в источнике появятся данные или остановить коннектор
+            как только данные закончатся
+          default: false
+        is_single_mode:
+          title: Одиночный режим
+          type: boolean
+          description: Очищать ли на клиенте старые данные при получении новых
+          default: false
+        options:
+          title: Options
+          type: object
+          default: {}
+        type:
+          title: Тип
+          enum:
+            - clickhouse
+            - postgresql
+            - mongo
+            - video_stream
+            - table_app
+            - save_table
+            - video_detection_app
+            - pipeline_manager
+            - images_detection_app
+            - classification_app
+            - text_classification_app
+            - constructor
+          type: string
+          description: >-
+            Один из: clickhouse, postgresql, mongo, video_stream, table_app,
+            save_table, video_detection_app, pipeline_manager,
+            images_detection_app, classification_app, text_classification_app,
+            constructor
+        data_resource:
+          title: Data Resource
+          anyOf:
+            - $ref: '#/components/schemas/DataResourceExpand'
+            - type: string
+              format: uuid
+        etl:
+          title: Etl
+          anyOf:
+            - $ref: '#/components/schemas/ETLExpand'
+            - type: string
+              format: uuid
+        pipeline_block_id:
+          title: Pipeline Block Id
+          anyOf:
+            - type: string
+              format: uuid
+            - type: string
+        work_area_id:
+          title: Work Area Id
+          anyOf:
+            - type: string
+              format: uuid
+            - type: string
+        connector:
+          title: Connector
+          anyOf:
+            - $ref: '#/components/schemas/ConnectorExpand'
+            - type: string
+              format: uuid
+        model:
+          title: Model
+          anyOf:
+            - $ref: '#/components/schemas/DSModelExpand'
+            - type: string
+              format: uuid
+        files:
+          title: Files
+          anyOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/FSExpand'
+            - type: array
+              items:
+                type: string
+                format: uuid
+            - $ref: '#/components/schemas/FSExpand'
+            - {}
+          default: []
+        output_dir:
+          title: Output Dir
+          anyOf:
+            - $ref: '#/components/schemas/FSExpand'
+            - type: string
+              format: uuid
+        input_dir:
+          title: Input Dir
+          anyOf:
+            - $ref: '#/components/schemas/FSExpand'
+            - type: string
+              format: uuid
+        url:
+          title: Url
+          type: string
+          default: ''
+        thumbnail:
+          title: Миниатюра
+          type: string
+          description: Картинка для отображения на дашборде
+          default: ''
+    DSModelExpand:
+      title: DSModelExpand
+      type: object
+      properties:
+        name:
+          title: Наименование
+          type: string
+          default: ''
+        any_data_dict:
+          title: Словарь для хранения произвольных дополнительных данных
+          type: object
+          default: {}
+        description:
+          title: Описание
+          type: string
+          default: ''
+        id:
+          title: Идентификатор
+          type: string
+          format: uuid
+        created_time:
+          title: Время создания
+          type: string
+          format: date-time
+        modified_time:
+          title: Время модификации
+          type: string
+          format: date-time
+        directory:
+          title: Directory
+          anyOf:
+            - type: string
+              format: uuid
+            - type: string
+            - $ref: '#/components/schemas/FSExpand'
+        apps:
+          title: Apps
+          anyOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/FSExpand'
+            - type: array
+              items:
+                type: string
+                format: uuid
+          default: []
+    DataResourceExpand:
+      title: DataResourceExpand
+      type: object
+      properties:
+        name:
+          title: Name
+          type: string
+          default: Ресурс
+        any_data_dict:
+          title: Словарь для хранения произвольных дополнительных данных
+          type: object
+          default: {}
+        description:
+          title: Описание
+          type: string
+          default: ''
+        id:
+          title: Идентификатор
+          type: string
+          format: uuid
+        created_time:
+          title: Время создания
+          type: string
+          format: date-time
+        modified_time:
+          title: Время модификации
+          type: string
+          format: date-time
+        options:
+          title: Options
+          type: object
+          default: {}
+        host:
+          title: Host
+          type: string
+          default: localhost
+        port:
+          title: Port
+          type: integer
+        user:
+          title: User
+          type: string
+        db_name:
+          title: Db Name
+          type: string
+        password:
+          title: Password
+          type: string
+        workspace:
+          title: Workspace
+          anyOf:
+            - $ref: '#/components/schemas/WorkspaceExpand'
+            - type: string
+              format: uuid
+        model:
+          title: Model
+          anyOf:
+            - $ref: '#/components/schemas/DSModelExpand'
+            - type: string
+              format: uuid
+        files:
+          title: Files
+          anyOf:
+            - type: array
+              items:
+                $ref: '#/components/schemas/FSExpand'
+            - type: array
+              items:
+                type: string
+                format: uuid
+            - type: array
+              items:
+                type: string
+          default: []
+        dir:
+          title: Dir
+          type: string
+        type:
+          title: Type
+          enum:
+            - clickhouse
+            - postgresql
+            - mongo
+            - video_stream
+            - table_app
+            - save_table
+            - video_detection_app
+            - pipeline_manager
+            - images_detection_app
+            - classification_app
+            - text_classification_app
+            - constructor
+          type: string
+    ETLExpand:
+      title: ETLExpand
+      required:
+        - type
+      type: object
+      properties:
+        name:
+          title: Наименование
+          type: string
+          default: ''
+        any_data_dict:
+          title: Словарь для хранения произвольных дополнительных данных
+          type: object
+          default: {}
+        description:
+          title: Описание
+          type: string
+          default: ''
+        id:
+          title: Идентификатор
+          type: string
+          format: uuid
+        created_time:
+          title: Время создания
+          type: string
+          format: date-time
+        modified_time:
+          title: Время модификации
+          type: string
+          format: date-time
+        query:
+          title: Query
+          type: string
+          default: ''
+        filter:
+          title: Filter
+          type: object
+          default: {}
+        key:
+          title: Key
+          type: string
+          default: ''
+        type:
+          title: Type
+          enum:
+            - clickhouse
+            - postgresql
+            - mongo
+            - video_stream
+            - table_app
+            - save_table
+            - video_detection_app
+            - pipeline_manager
+            - images_detection_app
+            - classification_app
+            - text_classification_app
+            - constructor
+          type: string
+        options:
+          title: Options
+          type: object
+          default: {}
+        modifications:
+          title: Modifications
+          type: array
+          items:
+            $ref: '#/components/schemas/ModificationSchema'
+          default: []
+    FSExpand:
+      title: FSExpand
+      type: object
+      properties:
+        name:
+          title: Наименование
+          type: string
+          default: ''
+        any_data_dict:
+          title: Словарь для хранения произвольных дополнительных данных
+          type: object
+          default: {}
+        description:
+          title: Описание
+          type: string
+          default: ''
+        id:
+          title: Id
+          type: string
+          format: uuid
+        created_time:
+          title: Время создания
+          type: string
+          format: date-time
+        modified_time:
+          title: Время модификации
+          type: string
+          format: date-time
+        link:
+          title: Link
+          type: string
+          default: ''
+        tag:
+          title: Tag
+          type: string
+          default: ''
+        size:
+          title: Size
+          type: integer
+          default: 0
+        path:
+          title: Path
+          type: string
+          default: ''
+        is_dir:
+          title: Is Dir
+          type: boolean
+          default: false
+        file_type:
+          title: File Type
+          type: string
+        read_access:
+          title: Read Access
+          type: boolean
+          default: false
+        write_access:
+          title: Write Access
+          type: boolean
+          default: false
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ModificationSchema:
+      title: ModificationSchema
+      required:
+        - command
+        - key_field_name
+        - sql
+      type: object
+      properties:
+        command:
+          title: Command
+          anyOf:
+            - enum:
+                - set
+                - get_sub
+                - delete
+                - save_result
+                - init_result
+              type: string
+            - type: string
+        key_field_name:
+          title: Key Field Name
+          type: string
+        row_id:
+          title: Row Id
+        field_name:
+          title: Field Name
+          type: string
+        field_type:
+          title: Field Type
+          type: string
+        sql:
+          title: Sql
+          type: string
+      description: Схема описания модификаций и подзапросов для SQL-таблицы
+    UserAvatar:
+      title: UserAvatar
+      type: object
+      properties:
+        image:
+          title: Image
+          type: string
+          format: uuid
+        color:
+          title: Color
+          maxLength: 6
+          minLength: 6
+          type: string
+
+    User:
+      required:
+        - id
+        - status
+        - password
+        - email
+        - cluster_id
+        - is_active
+        - is_superuser
+        - is_verified
+        - avatar
+        - name
+        - surname
+        - patronymic
+        - phone
+        - group
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        password:
+          title: Password
+          type: string
+        email:
+          title: Email
+          type: string
+          format: email
+        cluster_id:
+          title: Cluster Id
+          type: string
+        is_active:
+          title: Is Active
+          type: boolean
+        is_superuser:
+          title: Is Superuser
+          type: boolean
+        is_verified:
+          title: Is Verified
+          type: boolean
+        avatar:
+          $ref: '#/components/schemas/UserAvatar'
+        name:
+          title: Name
+          type: string
+          default: ''
+        surname:
+          title: Surname
+          type: string
+          default: ''
+        patronymic:
+          title: Patronymic
+          type: string
+          default: ''
+        phone:
+          title: Phone
+          type: string
+          default: ''
+        group:
+          title: Group
+          type: string
+          format: uuid
+    UserUpdate:
+      title: UserUpdate
+      type: object
+      properties:
+        password:
+          title: Password
+          type: string
+        email:
+          title: Email
+          type: string
+          format: email
+        cluster_id:
+          title: Cluster Id
+          type: string
+        is_active:
+          title: Is Active
+          type: boolean
+        is_superuser:
+          title: Is Superuser
+          type: boolean
+        is_verified:
+          title: Is Verified
+          type: boolean
+        avatar:
+          $ref: '#/components/schemas/UserAvatar'
+        name:
+          title: Name
+          type: string
+          default: ''
+        surname:
+          title: Surname
+          type: string
+          default: ''
+        patronymic:
+          title: Patronymic
+          type: string
+          default: ''
+        phone:
+          title: Phone
+          type: string
+          default: ''
+        group:
+          title: Group
+          type: string
+          format: uuid
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    WorkspaceExpand:
+      title: WorkspaceExpand
+      type: object
+      properties:
+        name:
+          title: Name
+          type: string
+          default: Рабочее пространство
+        any_data_dict:
+          title: Словарь для хранения произвольных дополнительных данных
+          type: object
+          default: {}
+        description:
+          title: Description
+          type: string
+          default: Описание
+        id:
+          title: Идентификатор
+          type: string
+          format: uuid
+        created_time:
+          title: Время создания
+          type: string
+          format: date-time
+        modified_time:
+          title: Время модификации
+          type: string
+          format: date-time
+  securitySchemes:
+    OAuth2PasswordBearer:
+      type: oauth2
+      flows:
+        password:
+          scopes: {}
+          tokenUrl: /api/auth/login
+
